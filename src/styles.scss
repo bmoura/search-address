@@ -1,0 +1,358 @@
+/* You can add global styles to this file, and also import other style files */
+
+// ==========================================
+//   MIXIN
+// ==========================================
+@mixin keyframes($animation-name) {
+  @keyframes #{$animation-name} {
+    @content;
+  }
+}
+
+@mixin animation($str) {
+  animation: #{$str} ease-in-out forwards;
+}
+
+/*
+  ----------------------------------------------------------------------------
+  # Colors
+  ----------------------------------------------------------------------------
+*/
+$color-primary: blue;
+$color-variant: white;
+$color-static: #f0efed;
+$color-disabled: grey;
+$color-shadow: rgba(
+  $color: #000000,
+  $alpha: 0.5
+);
+
+/*
+  ----------------------------------------------------------------------------
+  # Reset
+  ----------------------------------------------------------------------------
+*/
+*:focus {
+  outline: none;
+}
+
+button{
+  background-color: transparent;
+}
+
+button[disabled] {
+  @extend .cur-not-allowed;
+  background-color: $color-disabled;
+}
+
+/*
+  ----------------------------------------------------------------------------
+  # Background
+  ----------------------------------------------------------------------------
+*/
+.bg-primary {
+  background-color: $color-primary;
+}
+
+.bg-static {
+  background-color: $color-static;
+}
+
+.bg-shadow {
+  background-color: $color-shadow;
+}
+
+/*
+  ----------------------------------------------------------------------------
+  # Border
+  ----------------------------------------------------------------------------
+*/
+.bd-0 {
+  border: 0;
+}
+
+.bd-primary{
+  border: 2px solid $color-primary;
+}
+
+.bdr-5 {
+  border-radius: 5px;
+}
+
+.bdr-10 {
+  border-radius: 10px;
+}
+
+/*
+  ----------------------------------------------------------------------------
+  # Box Size
+  ----------------------------------------------------------------------------
+*/
+.bxs-content-box {
+  box-sizing: content-box;
+}
+
+.bxs-border-box {
+  box-sizing: border-box;
+}
+
+/*
+  ----------------------------------------------------------------------------
+  # Cursor
+  ----------------------------------------------------------------------------
+*/
+.cur-pointer {
+  cursor: pointer;
+}
+
+.cur-not-allowed {
+  cursor: not-allowed;
+}
+
+/*
+  ----------------------------------------------------------------------------
+  # Fonts and Texts
+  ----------------------------------------------------------------------------
+*/
+.ff-arial {
+  font-family: Arial;
+}
+
+.fc-primary {
+  color: $color-primary;
+}
+
+.fc-variant {
+  color: $color-variant;
+}
+
+.fc-static {
+  color: $color-static;
+}
+
+.tt-uppercase {
+  text-transform: uppercase;
+}
+
+/*
+  ----------------------------------------------------------------------------
+  # Flex Box
+  ----------------------------------------------------------------------------
+*/
+.d-flex {
+  display: flex;
+}
+
+.ai-center {
+  align-items: center;
+}
+
+.fxd-column {
+  flex-direction: column;
+}
+
+.jc-center {
+  justify-content: center;
+}
+
+/*
+  ----------------------------------------------------------------------------
+  # Spacing
+  ----------------------------------------------------------------------------
+*/
+.p-10 {
+  padding: 10px;
+}
+
+.p-20 {
+  padding: 20px;
+}
+
+.pt-10{
+  padding-top: 10px;
+}
+
+.pt-40{
+  padding-top: 40px;
+}
+
+.pb-10{
+  padding-bottom: 10px;
+}
+
+.pr-10 {
+  padding-right: 10px;
+}
+
+.m-20{
+  margin: 20px;
+}
+
+.mt-45{
+  margin-top: 45px;
+}
+
+.mr-10 {
+  margin-right: 10px;
+}
+
+.mr-20 {
+  margin-right: 20px;
+}
+
+/*
+  ----------------------------------------------------------------------------
+  # Sizes
+  ----------------------------------------------------------------------------
+*/
+.mxw-1280 {
+  max-width: 1280px;
+}
+
+.mxw-320 {
+  max-width: 320px;
+}
+
+.mxw-600 {
+  max-width: 600px;
+}
+
+.mxw-580 {
+  max-width: 580px;
+}
+
+.w-100p {
+  width: 100%;
+}
+
+.w-100 {
+  width: 100px;
+}
+
+.w-320 {
+  width: 320px;
+}
+
+.h-32 {
+  height: 32px;
+}
+
+.h-100p {
+  height: 100%;
+}
+
+/*
+  ----------------------------------------------------------------------------
+  # Positions
+  ----------------------------------------------------------------------------
+*/
+.pos-relative {
+  position: relative;
+}
+
+.pos-absolute {
+  position: absolute;
+}
+
+.t-0 {
+  top: 0;
+}
+
+.t-20{
+  top: 20px;
+}
+
+.t--20{
+  top: -20px;
+}
+
+.l-0 {
+  left: 0;
+}
+
+.r-0{
+  right: 0;
+}
+
+.zi-10{
+  z-index: 10;
+}
+
+.zi-20{
+  z-index: 20;
+}
+
+/*
+  ----------------------------------------------------------------------------
+  # Shadows
+  ----------------------------------------------------------------------------
+*/
+
+$shadow-primary: 0px 0px 10px;
+$shadow-other: 0px 0px 15px;
+
+$shadow-inset: inset $shadow-primary -5px $color-shadow;
+$shadow-inset-h: inset $shadow-primary 0 $color-shadow;
+
+$shadow-very: $shadow-primary 0px $color-shadow;
+$shadow-hover: $shadow-other 0px $color-shadow;
+
+.bxw-very {
+  box-shadow: $shadow-very;
+}
+
+.bxw-inset {
+  box-shadow: $shadow-inset;
+  &:focus {
+    box-shadow: $shadow-inset-h;
+  }
+}
+
+.bxw-hover {
+  &:not([disabled]) {
+    &:hover {
+      box-shadow: $shadow-hover;
+    }
+  }
+}
+
+.op-0 {
+  opacity: 0;
+}
+
+.op-1 {
+  opacity: 1;
+}
+
+/*
+  ----------------------------------------------------------------------------
+  # Animations and Transformation
+  ----------------------------------------------------------------------------
+*/
+.trs-eio-500 {
+  transition: all 500ms ease-in-out;
+}
+
+.fade-in {
+  @include animation("fade-in .5s");
+  @include keyframes(fade-in) {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+.fade-out {
+  @include animation("fade-out .5s");
+  @include keyframes(fade-out) {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+}
